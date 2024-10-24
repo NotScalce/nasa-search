@@ -44,6 +44,9 @@ export class NasaSearch extends LitElement {
         line-height: 40px;
         width: 100%;
       }
+      .container {
+        width: 200px;
+      }
     `;
   }
 
@@ -66,10 +69,13 @@ export class NasaSearch extends LitElement {
     </details>
     <div class="results">
       ${this.items.map((item, index) => html`
-      <nasa-image
-        source="${item.links[0].href}"
-        title="${item.data[0].title}"
-      ></nasa-image>
+        <a href="${item.links[0].href}" target="_blank"></a>
+      <div class="container">
+        <nasa-image
+          source="${item.links[0].href}"
+          title="${item.data[0].title}"
+        ></nasa-image>
+      </div>
       `)}
     </div>
     `;

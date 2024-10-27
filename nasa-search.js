@@ -21,6 +21,8 @@ export class NasaSearch extends LitElement {
         height: 1px;
       }
       .results {
+        display: flex;
+        flex-wrap: wrap;
         visibility: visible;
         height: 100%;
         opacity: 1;
@@ -45,7 +47,17 @@ export class NasaSearch extends LitElement {
         width: 100%;
       }
       .container {
-        width: 200px;
+        overflow: hidden;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        background-color: white; 
+        text-decoration: none; 
+        margin: 4px;
+      }
+
+      .container:hover {
+        margin: 4px;
+        transform: scale(1.1);
+        background-color: lightblue; 
       }
     `;
   }
@@ -69,13 +81,11 @@ export class NasaSearch extends LitElement {
     </details>
     <div class="results">
       ${this.items.map((item, index) => html`
-        <a href="${item.links[0].href}" target="_blank"></a>
-      <div class="container">
+      <a href="${item.links[0].href}" target="_blank" class="container">
         <nasa-image
           source="${item.links[0].href}"
           title="${item.data[0].title}"
-        ></nasa-image>
-      </div>
+        ></nasa-image></a>
       `)}
     </div>
     `;
